@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif">
+<defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5b6472"/></marker>
+<marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2563eb"/></marker>
+</defs>
+<rect width="1600" height="1000" fill="#ffffff"/>
+<text x="48" y="64" font-size="30" font-weight="700" fill="#111827">ABLab network: Active Directory lab in Microsoft Azure</text>
+<text x="48" y="96" font-size="18" fill="#4b5563">One subnet, one domain controller, one domain-joined client. Remote access limited to a single admin IP.</text>
+
+<!-- Internet / admin -->
+<rect x="48" y="150" width="300" height="130" rx="12" fill="#f9fafb" stroke="#9ca3af" stroke-width="1.5"/>
+<text x="68" y="186" font-size="20" font-weight="700" fill="#111827">Admin workstation</text>
+<text x="68" y="214" font-size="16" fill="#374151">macOS · home network</text>
+<text x="68" y="240" font-size="16" fill="#374151">Azure Portal (HTTPS)</text>
+<text x="68" y="264" font-size="16" fill="#374151">Windows App (RDP)</text>
+<text x="48" y="310" font-size="15" fill="#6b7280">Internet</text>
+
+<!-- Azure boundary -->
+<rect x="420" y="130" width="1132" height="790" rx="16" fill="#f0f6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="444" y="166" font-size="20" font-weight="700" fill="#1d4ed8">Microsoft Azure · Azure subscription 1 · West US</text>
+<rect x="444" y="182" width="1084" height="714" rx="14" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="466" y="214" font-size="17" font-weight="700" fill="#1e3a8a">Resource group: rg-ad-support-lab</text>
+
+<!-- VNet -->
+<rect x="466" y="232" width="1040" height="560" rx="12" fill="#ffffff" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="7 5"/>
+<text x="488" y="262" font-size="17" font-weight="700" fill="#1e3a8a">Virtual network: vnet-ad-lab · 10.0.0.0/16</text>
+<text x="488" y="286" font-size="15" fill="#374151">Custom DNS server: 10.0.1.4 (DC01)</text>
+
+<!-- Subnet -->
+<rect x="488" y="304" width="996" height="466" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.2"/>
+<text x="510" y="334" font-size="16" font-weight="700" fill="#334155">Subnet: snet-lab · 10.0.1.0/24</text>
+
+<!-- DC01 -->
+<rect x="520" y="356" width="400" height="300" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
+<text x="544" y="394" font-size="22" font-weight="700" fill="#111827">DC01</text>
+<text x="544" y="420" font-size="16" fill="#374151">Windows Server 2025 · D2as_v6</text>
+<text x="544" y="444" font-size="16" font-weight="700" fill="#1d4ed8">Private IP 10.0.1.4 (static)</text>
+<line x1="544" y1="460" x2="896" y2="460" stroke="#bfdbfe"/>
+<text x="544" y="488" font-size="16" fill="#111827">Domain controller · ablab.internal</text>
+<text x="544" y="514" font-size="16" fill="#111827">DNS server (AD-integrated)</text>
+<text x="544" y="540" font-size="16" fill="#111827">Group Policy: password + lockout,</text>
+<text x="544" y="562" font-size="16" fill="#111827">  Map F Drive - Finance</text>
+<text x="544" y="588" font-size="16" fill="#111827">File share \\DC01\Finance</text>
+<text x="544" y="614" font-size="16" fill="#111827">OUs · 6 security groups · 15 users</text>
+<text x="544" y="640" font-size="14" fill="#6b7280">NIC + NSG: DC01-nsg · public IP: DC01-ip</text>
+
+<!-- CLIENT01 -->
+<rect x="1060" y="356" width="400" height="300" rx="12" fill="#ffffff" stroke="#64748b" stroke-width="2"/>
+<text x="1084" y="394" font-size="22" font-weight="700" fill="#111827">CLIENT01</text>
+<text x="1084" y="420" font-size="16" fill="#374151">Windows Server 2025 · D2as_v6</text>
+<text x="1084" y="444" font-size="16" font-weight="700" fill="#334155">Private IP 10.0.1.5</text>
+<line x1="1084" y1="460" x2="1436" y2="460" stroke="#e2e8f0"/>
+<text x="1084" y="488" font-size="16" fill="#111827">Joined to ablab.internal</text>
+<text x="1084" y="514" font-size="16" fill="#111827">Employees sign in with</text>
+<text x="1084" y="536" font-size="16" fill="#111827">  domain accounts (RDP)</text>
+<text x="1084" y="562" font-size="16" fill="#111827">Receives DNS + Group Policy</text>
+<text x="1084" y="588" font-size="16" fill="#111827">F: drive mapped for SG-Finance</text>
+<text x="1084" y="640" font-size="14" fill="#6b7280">NIC + NSG: CLIENT01-nsg · public IP: CLIENT01-ip</text>
+
+<!-- internal flows -->
+<path d="M1060 470 H920" fill="none" stroke="#2563eb" stroke-width="2.5" marker-end="url(#b)"/>
+<text x="990" y="494" text-anchor="middle" font-size="15" font-weight="700" fill="#1d4ed8">DNS 53</text>
+<text x="990" y="516" text-anchor="middle" font-size="15" font-weight="700" fill="#1d4ed8">Kerberos 88</text>
+<text x="990" y="538" text-anchor="middle" font-size="15" font-weight="700" fill="#1d4ed8">LDAP 389</text>
+<text x="990" y="560" text-anchor="middle" font-size="15" font-weight="700" fill="#1d4ed8">SMB 445</text>
+<text x="990" y="590" text-anchor="middle" font-size="13" fill="#6b7280">sign-in, policy,</text>
+<text x="990" y="608" text-anchor="middle" font-size="13" fill="#6b7280">F: share</text>
+
+<!-- NSG panel -->
+<rect x="520" y="680" width="940" height="74" rx="10" fill="#fefce8" stroke="#ca8a04" stroke-width="1.5"/>
+<text x="544" y="710" font-size="16" font-weight="700" fill="#713f12">Network security group inbound rules (both VMs)</text>
+<text x="544" y="738" font-size="15" fill="#422006">300 Allow RDP TCP 3389 from admin IP only  ·  65000 AllowVnetInBound  ·  65500 DenyAllInBound</text>
+
+<!-- RDP path from admin -->
+<path d="M348 215 H396 V717 H520" fill="none" stroke="#5b6472" stroke-width="2" stroke-dasharray="8 6" marker-end="url(#a)"/>
+<path d="M720 680 V660" fill="none" stroke="#5b6472" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#a)"/>
+<path d="M1260 680 V660" fill="none" stroke="#5b6472" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#a)"/>
+<text x="48" y="350" font-size="15" font-weight="700" fill="#374151">RDP 3389 to both VMs,</text>
+<text x="48" y="372" font-size="15" font-weight="700" fill="#374151">filtered by the NSG rules</text>
+<!-- cost band -->
+<rect x="466" y="812" width="1040" height="64" rx="10" fill="#f3f4f6" stroke="#d1d5db"/>
+<text x="488" y="840" font-size="15" font-weight="700" fill="#374151">Cost and safety controls</text>
+<text x="488" y="864" font-size="15" fill="#374151">Auto-shutdown 12:00 AM PT · $25/month budget alert · Standard SSD disks · delete-with-VM for disk, NIC and public IP</text>
+
+<!-- legend -->
+<text x="48" y="960" font-size="14" fill="#6b7280">Solid blue: traffic inside the subnet.  Dashed grey: admin RDP from the internet, filtered by the NSG.  Public IP addresses intentionally omitted.</text>
+</svg>
